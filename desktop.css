@@ -9,3 +9,9 @@
   left: 70%;
   top: 0%;
 }
+
+#result-circuit {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+}
