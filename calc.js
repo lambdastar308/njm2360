@@ -85,13 +85,13 @@ function showResult() {
   document.getElementById("Type").innerHTML = Type;
   switch(Type){
     case "降圧":
-      resultView.style.background = "#80FF80";
+      resultView.style.background = "#DDFFDD";
     break;
     case "昇圧":
-      resultView.style.background = "#FF8080";
+      resultView.style.background = "#FFDDDD";
     break;
     case "負電圧":
-      resultView.style.background = "#8080FF";
+      resultView.style.background = "#DDDDFF";
     break;
   }
 
