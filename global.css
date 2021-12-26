@@ -10,10 +10,29 @@ dl dd{
 padding:10px 0;
 text-align: right;
 }
+
 .inl {
 display:inline;
 }
 
+#result{
+  border-radius: 10px;
+}
+
 html{
 font-family: 'Helvetica', 'MS Pゴシック','MS PGothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+
+input[type='number'] {
+  background-color: #efefef;
+  outline: none;
+  padding: 0.3em;
+  border: 0;
+  border-style: solid;
+  border-color: #E3E7EA;
+  border-width: 0px 0px 2px 0px;
+}
+input[type='number']:focus {
+  background-color: #efffff;
+  border-color: #B2FF59;
 }
