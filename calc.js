@@ -17,6 +17,7 @@ var Rsc;
 var Lmin;
 var Co;
 var Type;
+var isUseICSW;
 
 function calc() {
   Vin     = document.getElementById("Vin")    .value;
@@ -26,7 +27,7 @@ function calc() {
   f       = document.getElementById("f")      .value;
   Vsat    = document.getElementById("Vsat")   .value;
   Vf      = document.getElementById("Vf")     .value;
-
+  isUseICSW = document.getElementById("isUseExSW").checked;
 
 
   if(Vout < 0)
@@ -50,6 +51,10 @@ function calcStepDown() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat - Vout) / Ipk * Ton;
   Co     = Ipk * T / 8.0 / Vripple;
+  if(isUseICSW)
+    showStepDownN();
+  else
+    showStepDownE();
 }
 
 function calcStepUp() {
@@ -63,7 +68,10 @@ function calcStepUp() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
-  // showStepUpN();
+  if(isUseICSW)
+    showStepUpN();
+  else
+    showStepUpE();
 }
 
 function calcInvert() {
@@ -77,6 +85,7 @@ function calcInvert() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
+    showInv();
 }
 
 function onChangeSW(){
@@ -85,6 +94,7 @@ function onChangeSW(){
   if(swelem.checked){
     document.getElementById("Vsat").value = 0.6;
   }
+  calc();
 }
 
 function showResult() {
@@ -136,10 +146,10 @@ function getSIPrefix(orivalue){
   return pref;
 }
 
-function toStringC(C){
+function toStringC(C, isUseSep){
   var unit = getPrefC(C);
   var sim = getRoundedValue(C * Math.pow(10, unit));
-  sim += "[";
+  if(!isUseSep) sim += "[";
   sim += unit == 6 ? "μ" : "p";
   return sim;
 }
@@ -152,10 +162,10 @@ function getPrefC(C){
   return 6;
 }
 
-function toStringL(L){
+function toStringL(L, isUseSep){
   var unit = getPrefL(L);
   var sim = getRoundedValue(L * Math.pow(10, unit));
-  sim += "[";
+  if(!isUseSep) sim += "[";
   sim += unit == 6 ? "μ" : "m";
   return sim;
 }

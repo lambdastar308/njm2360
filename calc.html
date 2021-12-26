@@ -17,6 +17,8 @@
       style.rel = "stylesheet";
       style.href = isMobile() ? "mobile.css" : "desktop.css";
       document.getElementById("root").appendChild(style);
+
+      calc();
     }
 
     function isMobile() {
@@ -72,11 +74,14 @@
       t<sub>off</sub>=<div                id="Toff"   class="inl"></div>s]<br/>
       t<sub>on</sub>=<div                 id="Ton"    class="inl"></div>s]<br/>
       I<sub>PK</sub>=<div                 id="Ipk"    class="inl"></div>[A]<br/>
+      <br/>
     </div>
-
     <div id="result-circuit">
       <canvas id="circuit">
       </canvas>
+    </div>
+    <div id="footer">
+      回路図の画像は新日本無線株式会社様のNJM2360データシートより
     </div>
   </body>
 </html>
