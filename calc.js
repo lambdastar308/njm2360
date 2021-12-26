@@ -29,6 +29,11 @@ function calc() {
   Vf      = document.getElementById("Vf")     .value;
   isUseICSW = document.getElementById("isUseExSW").checked;
 
+  document.getElementById("Vsat").disabled = Vout < 0 || isUseICSW;
+  document.getElementById("isUseExSW").disabled = Vout < 0;
+  if(Vout < 0){
+    document.getElementById("isUseExSW").checked = true;
+  }
 
   if(Vout < 0)
     calcInvert();
