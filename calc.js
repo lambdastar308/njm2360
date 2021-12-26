@@ -63,6 +63,7 @@ function calcStepUp() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
+  showStepUpN();
 }
 
 function calcInvert() {
@@ -78,8 +79,15 @@ function calcInvert() {
   Co     = Ipk * Ton / Vripple;
 }
 
-function showResult() {
+function onChangeSW(){
+  var swelem = document.getElementById('isUseExSW');
+  document.getElementById("Vsat").disabled = swelem.checked;
+  if(swelem.checked){
+    document.getElementById("Vsat").value = 0.6;
+  }
+}
 
+function showResult() {
   var isCompleted = Vin && Vout && Iout && Vripple && f && Vsat && Vf;
   var resultView = document.getElementById("result");
   document.getElementById("Type").innerHTML = Type;
@@ -109,7 +117,6 @@ function showResult() {
 
 function getSimplifiedValue(value){
   var pref = getSIPrefix(value);
-
   return getRoundedValue(value * Math.pow(10, -pref))+ "×10<sup>"+pref+"</sup>";
 }
 

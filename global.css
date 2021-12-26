@@ -42,3 +42,8 @@ input[type='number']:hover {
   background-color: #efffff;
   border-color: #b2ffff;
 }
+
+input[type='number']:disabled {
+  background-color: #808080;
+  border-color: #808080;
+}

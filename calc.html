@@ -1,6 +1,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" charset="UTF-8">
+    <script src="show.js"> </script>
     <script src="calc.js"> </script>
     <script>
 
@@ -9,6 +10,7 @@
       for(var i = 0; i < inputs.length; i++){
         inputs[i].onchange = calc;
       }
+      document.getElementById('isUseExSW').onchange = onChangeSW;
 
       //スマホ判定をする
       var style = document.createElement("link");
@@ -47,6 +49,7 @@
       <h3>
         スイッチング素子
       </h3>
+        IC内部にあるスイッチを利用する<input type="checkbox" id="isUseExSW" value=true />
       <dl>
         <dt>アウトプット・スイッチ・飽和電圧</dt><dd>V<sub>sat</sub>=<input type="number" id="Vsat" />[V]</dd><br/>
       </dl>
@@ -54,7 +57,7 @@
         整流ダイオード
       </h3>
       <dl>
-        <dt>整流用・ダイオード・動方向電圧</dt><dd>V<sub>f</sub>=<input type="number" id="Vf" />[V]</dd><br/>
+        <dt>整流用・ダイオード・動方向電圧</dt><dd>V<sub>f</sub>=<input type="number" id="Vf" value="0.6" />[V]</dd><br/>
       </dl>
     </div>
     <div id="result">
@@ -69,6 +72,11 @@
       t<sub>off</sub>=<div                id="Toff"   class="inl"></div>s]<br/>
       t<sub>on</sub>=<div                 id="Ton"    class="inl"></div>s]<br/>
       I<sub>PK</sub>=<div                 id="Ipk"    class="inl"></div>[A]<br/>
+    </div>
+
+    <div id="result-circuit">
+      <canvas id="circuit">
+      </canvas>
     </div>
   </body>
 </html>
