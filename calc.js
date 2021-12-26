@@ -97,7 +97,7 @@ function showResult() {
 
   if(!isCompleted) return;
   document.getElementById("Ct").    innerHTML = toStringC(Ct);
-  document.getElementById("Rsc").   innerHTML = Rsc;
+  document.getElementById("Rsc").   innerHTML = getRoundedValue(Rsc);
   document.getElementById("Lmin").  innerHTML = toStringL(Lmin);
   document.getElementById("Co").    innerHTML = toStringC(Co);
   document.getElementById("Tonoff").innerHTML = Tonoff;
@@ -110,7 +110,7 @@ function showResult() {
 function getSimplifiedValue(value){
   var pref = getSIPrefix(value);
 
-  return Math.round(value * Math.pow(10, -pref) * 1000) / 1000 + "×10<sup>"+pref+"</sup>";
+  return getRoundedValue(value * Math.pow(10, -pref))+ "×10<sup>"+pref+"</sup>";
 }
 
 function getSIPrefix(orivalue){
@@ -131,7 +131,7 @@ function getSIPrefix(orivalue){
 
 function toStringC(C){
   var unit = getPrefC();
-  var sim = Math.round(C * Math.pow(10, unit) * 1000) / 1000;
+  var sim = getRoundedValue(C * Math.pow(10, unit));
   sim += "[";
   sim += unit == 6 ? "μ" : "p";
   return sim;
@@ -147,10 +147,14 @@ function getPrefC(C){
 
 function toStringL(L){
   var unit = getPrefL(L);
-  var sim = Math.round(L * Math.pow(10, unit) * 1000) / 1000;
+  var sim = getRoundedValue(L * Math.pow(10, unit));
   sim += "[";
   sim += unit == 6 ? "μ" : "m";
   return sim;
+}
+
+function getRoundedValue(value){
+  return Math.round(value * 1000) / 1000;
 }
 
 function getPrefL(L){
