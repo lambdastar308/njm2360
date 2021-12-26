@@ -127,7 +127,7 @@ function showResult() {
   document.getElementById("T").     innerHTML = toStringL(T);
   document.getElementById("Toff").  innerHTML = toStringL(Toff);
   document.getElementById("Ton").   innerHTML = toStringL(Ton);
-  document.getElementById("Ipk").   innerHTML = Ipk;
+  document.getElementById("Ipk").   innerHTML = getRoundedValue(Ipk);
 }
 
 function getSimplifiedValue(value){
