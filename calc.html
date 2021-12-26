@@ -3,6 +3,7 @@
     <meta http-equiv="content-type" charset="UTF-8">
     <link rel="shortcut icon" href="favicon.jpg">
     <title>NJM2360/MC34063 部品定数計算ツール</title>
+    <script src="resistorTable.js"> </script>
     <script src="show.js"> </script>
     <script src="calc.js"> </script>
     <script>
@@ -13,6 +14,11 @@
         inputs[i].onchange = calc;
       }
       document.getElementById('isUseExSW').onchange = onChangeSW;
+      document.getElementById('loadResistors').onclick = function(){
+        var v = document.getElementById('RTemp').value;
+        ResistorTable[v]();
+        calc();
+      };
 
       //スマホ判定をする
       var style = document.createElement("link");
@@ -63,6 +69,20 @@
       <dl>
         <dt>整流用・ダイオード・動方向電圧</dt><dd>V<sub>f</sub>=<input type="number" id="Vf" value="0.6" />[V]</dd><br/>
       </dl>
+
+      R1,R2の抵抗に使用する抵抗値の候補(改行区切り)<br/>
+      <textarea id="Rlist"></textarea><br/>
+      候補<br/>
+      <select id="RTemp">
+        <option value="E3">E3系列</option>
+        <option value="E6">E6系列</option>
+        <option value="E12">E12系列</option>
+        <option value="E24">E24系列</option>
+        <option value="E48">E48系列</option>
+        <option value="MarutsuResistors">マルツにて販売している抵抗から</option>
+      </select>
+      <button id="loadResistors">指定した系列の抵抗を取得する</button><br/>
+      ※「マルツにて販売している抵抗から」は2021/12/26 22:30に確認
     </div>
     <div id="result">
       <h2>種別: <div                      id="Type"   class="inl"></div></h2>
@@ -76,9 +96,12 @@
       t<sub>off</sub>=<div                id="Toff"   class="inl"></div>s]<br/>
       t<sub>on</sub>=<div                 id="Ton"    class="inl"></div>s]<br/>
       I<sub>PK</sub>=<div                 id="Ipk"    class="inl"></div>[A]<br/>
+      R<sub>1</sub>=<div                  id="R1"     class="inl"></div>[Ω]<br/>
+      R<sub>2</sub>=<div                  id="R2"     class="inl"></div>[Ω]<br/>
       <br/>
     </div>
     <div id="result-circuit">
+      回路図をクリックするとダウンロードできます。<br/>
       <canvas id="circuit">
       </canvas>
     </div>

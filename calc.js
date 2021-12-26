@@ -18,6 +18,10 @@ var Lmin;
 var Co;
 var Type;
 var isUseICSW;
+var resistors;
+var R2perR1 // R2 / R1
+
+var resistorsResult;
 
 function calc() {
   Vin     = document.getElementById("Vin")    .value;
@@ -28,6 +32,12 @@ function calc() {
   Vsat    = document.getElementById("Vsat")   .value;
   Vf      = document.getElementById("Vf")     .value;
   isUseICSW = document.getElementById("isUseExSW").checked;
+  var rawResistors = document.getElementById("Rlist").value.split("\n");
+
+  resistors = new Array();
+  for(var i = 0; i < rawResistors.length; i++){
+    resistors.push(parseFloat(rawResistors[i]));
+  }
 
   document.getElementById("Vsat").disabled = Vout < 0 || isUseICSW;
   document.getElementById("isUseExSW").disabled = Vout < 0;
@@ -42,7 +52,19 @@ function calc() {
   else
     calcStepDown();
 
+  findResistors();
+
   showResult();
+
+  document.getElementById("circuit").onclick = function(){
+    var canvas = document.getElementById("circuit");
+
+    var link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "test.png";
+    link.click();
+  };
+
 }
 
 function calcStepDown() {
@@ -56,6 +78,7 @@ function calcStepDown() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat - Vout) / Ipk * Ton;
   Co     = Ipk * T / 8.0 / Vripple;
+  R2perR1 =Vout / 1.25 - 1.0;
   if(isUseICSW)
     showStepDownN();
   else
@@ -73,6 +96,7 @@ function calcStepUp() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
+  R2perR1 = Vout / 1.25 - 1.0;
   if(isUseICSW)
     showStepUpN();
   else
@@ -90,7 +114,8 @@ function calcInvert() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
-    showInv();
+  R2perR1 = 1.0 / (-Vout / 1.25 - 1.0);
+  showInv();
 }
 
 function onChangeSW(){
@@ -128,6 +153,8 @@ function showResult() {
   document.getElementById("Toff").  innerHTML = toStringL(Toff);
   document.getElementById("Ton").   innerHTML = toStringL(Ton);
   document.getElementById("Ipk").   innerHTML = getRoundedValue(Ipk);
+  document.getElementById("R1").    innerHTML = resistorsResult[0].R1;
+  document.getElementById("R2").    innerHTML = resistorsResult[0].R2;
 }
 
 function getSimplifiedValue(value){
@@ -185,4 +212,27 @@ function getPrefL(L){
     return 6;
   }
   return 3;
+}
+
+function sortResult(a, b){
+  var com1 = a.res - b.res;
+  if(Math.abs(com1) < 0.01)
+    return Math.log10(a.R1) - Math.log10(b.R1);
+  return com1;
+}
+
+function findResistors(){
+  resistorsResult = new Array();
+
+  for(var x = 0; x < resistors.length; x++)
+    for(var y = 0; y < resistors.length; y++){
+      var result = new Object();
+      result.R1 = resistors[x];
+      result.R2 = resistors[y];
+      result.res = Math.abs(result.R2 / result.R1 - R2perR1);
+      if(result.res < 5){
+        resistorsResult.push(result);
+      }
+    }
+    resistorsResult = resistorsResult.sort(sortResult);
 }
