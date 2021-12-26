@@ -9,6 +9,7 @@ function showStepUpN(){
   canvas.width = 622;
   canvas.height = 358;
   var g = canvas.getContext("2d");
+  g.fillStyle = "red";
   var back = new Image();
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
@@ -30,6 +31,7 @@ function showStepUpE(){
   canvas.width = 622;
   canvas.height = 358;
   var g = canvas.getContext("2d");
+  g.fillStyle = "red";
   var back = new Image();
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
@@ -50,6 +52,7 @@ function showStepDownN(){
   canvas.width = 563;
   canvas.height = 310;
   var g = canvas.getContext("2d");
+  g.fillStyle = "green";
   var back = new Image();
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
@@ -70,6 +73,7 @@ function showStepDownE(){
   canvas.width = 584;
   canvas.height = 314;
   var g = canvas.getContext("2d");
+  g.fillStyle = "green";
   var back = new Image();
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
@@ -89,6 +93,7 @@ function showInv(){
   canvas.width = 576;
   canvas.height = 364;
   var g = canvas.getContext("2d");
+  g.fillStyle = "blue";
   var back = new Image();
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
