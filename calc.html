@@ -37,11 +37,11 @@
         入出力
       </h3>
       <dl>
-        <dt>入力電圧</dt><dd>V<sub>IN</sub>=<input type="number" id="Vin" />[V]</dd><br/>
-        <dt>出力電圧</dt><dd>V<sub>OUT</sub>=<input type="number" id="Vout" />[V]</dd><br/>
-        <dt>出力最大電流</dt><dd>I<sub>OUT</sub>=<input type="number" id="Iout" />[A]</dd><br/>
-        <dt>リプル電圧</dt><dd>V<sub>ripple(p-p)</sub>=<input type="number" id="Vripple" />[V]</dd><br/>
-        <dt>スイッチング周波数</dt><dd>f=<input type="number" id="f" />[Hz]</dd><br/>
+        <dt>入力電圧</dt><dd>V<sub>IN</sub>=<input            type="number" id="Vin"     value="6.3" />[V]</dd><br/>
+        <dt>出力電圧</dt><dd>V<sub>OUT</sub>=<input           type="number" id="Vout"    value="5"/>[V]</dd><br/>
+        <dt>出力最大電流</dt><dd>I<sub>OUT</sub>=<input       type="number" id="Iout"    value="0.5"/>[A]</dd><br/>
+        <dt>リプル電圧</dt><dd>V<sub>ripple(p-p)</sub>=<input type="number" id="Vripple" value="0.01"/>[V]</dd><br/>
+        <dt>スイッチング周波数</dt><dd>f=<input               type="number" id="f"       value="20000"/>[Hz]</dd><br/>
       </dl>
 
       <h3>
@@ -58,7 +58,7 @@
       </dl>
     </div>
     <div id="result">
-      <h2>種別: <div                          id="Type"   class="inl"></div><br/></h2>
+      <h2>種別: <div                      id="Type"   class="inl"></div><br/></h2>
       C<sub>T</sub>=<div                  id="Ct"     class="inl"></div>F]<br/>
       R<sub>SC</sub>=<div                 id="Rsc"    class="inl"></div>[Ω]<br/>
       L=<div                              id="Lmin"   class="inl"></div>H]<br/>

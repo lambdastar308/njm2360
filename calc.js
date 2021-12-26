@@ -130,7 +130,7 @@ function getSIPrefix(orivalue){
 }
 
 function toStringC(C){
-  var unit = getPrefC();
+  var unit = getPrefC(C);
   var sim = getRoundedValue(C * Math.pow(10, unit));
   sim += "[";
   sim += unit == 6 ? "μ" : "p";
@@ -139,10 +139,10 @@ function toStringC(C){
 
 function getPrefC(C){
   var log = getSIPrefix(C);
-  if(Math.abs(-6 - log) < Math.abs(-12 -log)){
-    return 6;
+  if(-9 > log){
+    return 12;
   }
-  return 12;
+  return 6;
 }
 
 function toStringL(L){
