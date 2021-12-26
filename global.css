@@ -1,0 +1,19 @@
+
+dl dt{
+width: 50%;
+padding:10px 0;
+float:left;
+clear:both;
+}
+
+dl dd{
+padding:10px 0;
+text-align: right;
+}
+.inl {
+display:inline;
+}
+
+html{
+font-family: 'Helvetica', 'MS Pゴシック','MS PGothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
