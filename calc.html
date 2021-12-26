@@ -1,13 +1,93 @@
 <html>
   <head>
+    <meta http-equiv="content-type" charset="UTF-8">
+    <script src="calc.js"> </script>
     <script>
+
+    function init(){
+      var inputs = document.getElementsByTagName('input');
+      for(var i = 0; i < inputs.length; i++){
+        inputs[i].onchange = calc;
+      }
+
+      //スマホ判定をする
+      var style = document.createElement("link");
+      style.rel = "stylesheet";
+      style.href = isMobile() ? "mobile.css" : "desktop.css";
+      document.getElementById("root").appendChild(style);
+    }
+
+    function isMobile() {
+      var width = innerWidth;
+      var height = innerHeight;
+      return width / height < 1;
+    }
     </script>
+    <style>
+dl dt{
+  width: 50%;
+  padding:10px 0;
+  float:left;
+  clear:both;
+}
+
+dl dd{
+  padding:10px 0;
+  text-align: right;
+}
+.inl {
+  display:inline;
+}
+
+html{
+  font-family: 'Helvetica', 'MS Pゴシック','MS PGothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+    </style>
   </head>
-  <body>
+  <body onload="init()" id="root">
     <h1>
       NJM2360/MC34063 部品定数計算ツール
     </h1>
-    入出力
-    入力電圧V<sub>IN</sub>
+    <div id="input">
+      <h2>
+        入力欄
+      </h2>
+      <h3>
+        入出力
+      </h3>
+      <dl>
+        <dt>入力電圧</dt><dd>V<sub>IN</sub>=<input type="number" id="Vin" />[V]</dd><br/>
+        <dt>出力電圧</dt><dd>V<sub>OUT</sub>=<input type="number" id="Vout" />[V]</dd><br/>
+        <dt>出力最大電流</dt><dd>I<sub>OUT</sub>=<input type="number" id="Iout" />[A]</dd><br/>
+        <dt>リプル電圧</dt><dd>V<sub>ripple(p-p)</sub>=<input type="number" id="Vripple" />[V]</dd><br/>
+        <dt>スイッチング周波数</dt><dd>f=<input type="number" id="f" />[Hz]</dd><br/>
+      </dl>
+
+      <h3>
+        スイッチング素子
+      </h3>
+      <dl>
+        <dt>アウトプット・スイッチ・飽和電圧</dt><dd>V<sub>sat</sub>=<input type="number" id="Vsat" />[V]</dd><br/>
+      </dl>
+      <h3>
+        整流ダイオード
+      </h3>
+      <dl>
+        <dt>整流用・ダイオード・動方向電圧</dt><dd>V<sub>f</sub>=<input type="number" id="Vf" />[V]</dd><br/>
+      </dl>
+    </div>
+    <div id="result">
+      種別: <div                          id="Type"   class="inl"></div><br/>
+      C<sub>T</sub>=<div                  id="Ct"     class="inl"></div><br/>
+      R<sub>SC</sub>=<div                 id="Rsc"    class="inl"></div>[Ω]<br/>
+      L=<div                              id="Lmin"   class="inl"></div><br/>
+      C<sub>O</sub>=<div                  id="Co"     class="inl"></div><br/>
+      <br />
+      t<sub>on</sub>/t<sub>off</sub>=<div id="Tonoff" class="inl"></div><br/>
+      T=<div                              id="T"      class="inl"></div>[s]<br/>
+      t<sub>off</sub>=<div                id="Toff"   class="inl"></div>[s]<br/>
+      t<sub>on</sub>=<div                 id="Ton"    class="inl"></div>[s]<br/>
+      I<sub>PK</sub>=<div                 id="Ipk"    class="inl"></div>[A]<br/>
+    </div>
   </body>
 </html>

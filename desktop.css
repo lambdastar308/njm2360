@@ -1,0 +1,11 @@
+
+#input{
+  width: 40%;
+}
+
+#result{
+  width: 30%;
+  position: absolute;
+  left: 70%;
+  top: 0%;
+}
