@@ -20,6 +20,8 @@ var Type;
 var isUseICSW;
 var resistors;
 var R2perR1 // R2 / R1
+var R1;
+var R2;
 
 var resistorsResult;
 
@@ -152,14 +154,27 @@ function showResult() {
   document.getElementById("T").     innerHTML = toStringL(T);
   document.getElementById("Toff").  innerHTML = toStringL(Toff);
   document.getElementById("Ton").   innerHTML = toStringL(Ton);
-  document.getElementById("Ipk").   innerHTML = getRoundedValue(Ipk);
-  document.getElementById("R1").    innerHTML = resistorsResult[0].R1;
-  document.getElementById("R2").    innerHTML = resistorsResult[0].R2;
+  document.getElementById("Ipk").   innerHTML = getSimplifiedValue(Ipk);
+  document.getElementById("R1").    innerHTML = getSimplifiedValue(R1);
+  document.getElementById("R2").    innerHTML = getSimplifiedValue(R2);
 }
 
 function getSimplifiedValue(value){
   var pref = getSIPrefix(value);
-  return getRoundedValue(value * Math.pow(10, -pref))+ "×10<sup>"+pref+"</sup>";
+  var nearestpref = [3,0,-3,-6,-12].reduce(function(prev, curr) {
+    return (Math.abs(curr - pref) < Math.abs(prev - pref) ? curr : prev);
+  });
+  var prefix = "";
+  var prefs = {
+    3: 'k',
+    0: '',
+  };
+  var prefminus = {
+    3: 'm',
+    6: 'μ',
+    12: 'p',
+  };
+  return getRoundedValue(value * Math.pow(10, -nearestpref))+ (nearestpref< 0 ? prefminus[-nearestpref] : prefs[nearestpref]);
 }
 
 function getSIPrefix(orivalue){
@@ -216,8 +231,8 @@ function getPrefL(L){
 
 function sortResult(a, b){
   var com1 = a.res - b.res;
-  if(Math.abs(com1) < 0.01)
-    return Math.log10(a.R1) - Math.log10(b.R1);
+  if(Math.abs(com1) < 0.001)
+    return Math.log10(b.R1) - Math.log10(a.R1);
   return com1;
 }
 
@@ -230,9 +245,11 @@ function findResistors(){
       result.R1 = resistors[x];
       result.R2 = resistors[y];
       result.res = Math.abs(result.R2 / result.R1 - R2perR1);
-      if(result.res < 5){
+      if(result.res < 10){
         resistorsResult.push(result);
       }
     }
     resistorsResult = resistorsResult.sort(sortResult);
+    R1 = resistorsResult[0].R1;
+    R2 = resistorsResult[0].R2;
 }

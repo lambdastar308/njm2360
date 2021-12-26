@@ -22,6 +22,8 @@ function showStepUpN(){
     g.fillText(Vin, 28,98);
     g.fillText(Vout, 555,92);
     g.fillText("Vf="+Vf, 412,80);
+    g.fillText(getSimplifiedValue(R2), 440,134);
+    g.fillText(getSimplifiedValue(R1), 508,298);
   }, false);
   back.src = "images/StepUpN.png";
 }
@@ -43,6 +45,8 @@ function showStepUpE(){
     g.fillText(Vin, 28,98);
     g.fillText(Vout, 555,92);
     g.fillText("Vf="+Vf, 433,80);
+    g.fillText(getSimplifiedValue(R2), 440,140);
+    g.fillText(getSimplifiedValue(R1), 499,290);
   }, false);
   back.src = "images/StepUpE.png";
 }
@@ -64,6 +68,8 @@ function showStepDownN(){
     g.fillText(Vin, 8,63);
     g.fillText(Vout, 495,155);
     // g.fillText("Vf="+Vf, 433,80);
+    g.fillText(getSimplifiedValue(R2), 410,185);
+    g.fillText(getSimplifiedValue(R1), 387,228);
   }, false);
   back.src = "images/StepDownN.png";
 }
@@ -85,6 +91,8 @@ function showStepDownE(){
     g.fillText(Vin, 8,63);
     g.fillText(Vout, 544,188);
     // g.fillText("Vf="+Vf, 433,80);
+    g.fillText(getSimplifiedValue(R2), 461,217);
+    g.fillText(getSimplifiedValue(R1), 457,257);
   }, false);
   back.src = "images/StepDownE.png";
 }
@@ -105,6 +113,8 @@ function showInv(){
     g.fillText(Vin, 8,65);
     g.fillText(Vout, 490,178);
     // g.fillText("Vf="+Vf, 433,80);
+    g.fillText(getSimplifiedValue(R2), 425,228);
+    g.fillText(getSimplifiedValue(R1), 420,275);
   }, false);
   back.src = "images/Inv.png";
 }
