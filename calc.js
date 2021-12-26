@@ -63,7 +63,7 @@ function calc() {
 
     var link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = "test.png";
+    link.download = "回路図_"+Vin+"Vから"+Vout+"Vに"+Type+".png";
     link.click();
   };
 
