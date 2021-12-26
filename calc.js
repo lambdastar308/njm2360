@@ -63,7 +63,7 @@ function calcStepUp() {
   Rsc    =  0.3 / Ipk;
   Lmin   = (Vin - Vsat) / Ipk * Ton;
   Co     = Ipk * Ton / Vripple;
-  showStepUpN();
+  // showStepUpN();
 }
 
 function calcInvert() {
