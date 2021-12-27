@@ -14,16 +14,16 @@ function showStepUpN(){
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
     g.font = "14px Noto Sans CJK JP";
-    g.fillText(getRoundedValue(Rsc), 118,44);
-    g.fillText(toStringL(Lmin,true), 252,38);
+    g.fillText(getRoundedValue(Rsc)+"Ω", 118,44);
+    g.fillText(toStringL(Lmin,true)+"H", 252,38);
     g.fillText("Co", 555,130);
-    g.fillText(toStringC(Co,true), 542,147);
-    g.fillText(toStringC(Ct,true), 366,321);
-    g.fillText(Vin, 28,98);
-    g.fillText(Vout, 555,92);
-    g.fillText("Vf="+Vf, 412,80);
-    g.fillText(getSimplifiedValue(R2), 440,134);
-    g.fillText(getSimplifiedValue(R1), 508,298);
+    g.fillText(toStringC(Co,true)+"F", 542,147);
+    g.fillText(toStringC(Ct,true)+"F", 366,321);
+    g.fillText(Vin+"V", 28,98);
+    g.fillText(Vout+"V", 555,92);
+    // g.fillText("Vf="+Vf, 412,80);
+    g.fillText(getSimplifiedValue(R2)+"Ω", 440,134);
+    g.fillText(getSimplifiedValue(R1)+"Ω", 508,298);
   }, false);
   back.src = "images/StepUpN.png";
 }
@@ -38,15 +38,14 @@ function showStepUpE(){
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
     g.font = "14px Noto Sans CJK JP";
-    g.fillText(getRoundedValue(Rsc), 93,71);
-    g.fillText(toStringL(Lmin,true), 236,73);
-    g.fillText(toStringC(Co,true), 542,130);
-    g.fillText(toStringC(Ct,true), 260,296);
-    g.fillText(Vin, 28,98);
-    g.fillText(Vout, 555,92);
-    g.fillText("Vf="+Vf, 433,80);
-    g.fillText(getSimplifiedValue(R2), 440,140);
-    g.fillText(getSimplifiedValue(R1), 499,290);
+    g.fillText(getRoundedValue(Rsc)+"Ω", 93,71);
+    g.fillText(toStringL(Lmin,true)+"H", 236,73);
+    g.fillText(toStringC(Co,true)+"F", 542,130);
+    g.fillText(toStringC(Ct,true)+"F", 260,296);
+    g.fillText(Vin+"V", 28,98);
+    g.fillText(Vout+"V", 555,92);
+    g.fillText(getSimplifiedValue(R2)+"Ω", 440,140);
+    g.fillText(getSimplifiedValue(R1)+"Ω", 499,290);
   }, false);
   back.src = "images/StepUpE.png";
 }
@@ -61,15 +60,15 @@ function showStepDownN(){
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
     g.font = "14px Noto Sans CJK JP";
-    g.fillText(getRoundedValue(Rsc), 91,23);
-    g.fillText(toStringL(Lmin,true), 387,110);
-    g.fillText(toStringC(Co,true), 490,228);
-    g.fillText(toStringC(Ct,true), 244,237);
-    g.fillText(Vin, 8,63);
-    g.fillText(Vout, 495,155);
+    g.fillText(getRoundedValue(Rsc)+"Ω", 91,23);
+    g.fillText(toStringL(Lmin,true)+"H", 387,110);
+    g.fillText(toStringC(Co,true)+"F", 490,228);
+    g.fillText(toStringC(Ct,true)+"F", 240,237);
+    g.fillText(Vin+"V", 8,66);
+    g.fillText(Vout+"V", 495,155);
     // g.fillText("Vf="+Vf, 433,80);
-    g.fillText(getSimplifiedValue(R2), 410,185);
-    g.fillText(getSimplifiedValue(R1), 387,228);
+    g.fillText(getSimplifiedValue(R2)+"Ω", 410,185);
+    g.fillText(getSimplifiedValue(R1)+"Ω", 387,228);
   }, false);
   back.src = "images/StepDownN.png";
 }
@@ -84,15 +83,15 @@ function showStepDownE(){
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
     g.font = "14px Noto Sans CJK JP";
-    g.fillText(getRoundedValue(Rsc), 71,44);
-    g.fillText(toStringL(Lmin,true), 432,175);
-    g.fillText(toStringC(Co,true), 524,257);
-    g.fillText(toStringC(Ct,true), 246,271);
-    g.fillText(Vin, 8,63);
-    g.fillText(Vout, 544,188);
+    g.fillText(getRoundedValue(Rsc)+"Ω", 71,44);
+    g.fillText(toStringL(Lmin,true)+"H", 432,175);
+    g.fillText(toStringC(Co,true)+"F", 524,257);
+    g.fillText(toStringC(Ct,true)+"F", 246,271);
+    g.fillText(Vin+"V", 8,63);
+    g.fillText(Vout+"V", 544,188);
     // g.fillText("Vf="+Vf, 433,80);
-    g.fillText(getSimplifiedValue(R2), 461,217);
-    g.fillText(getSimplifiedValue(R1), 457,257);
+    g.fillText(getSimplifiedValue(R2)+"Ω", 461,217);
+    g.fillText(getSimplifiedValue(R1)+"Ω", 457,257);
   }, false);
   back.src = "images/StepDownE.png";
 }
@@ -106,15 +105,15 @@ function showInv(){
   back.addEventListener("load", function() {
     g.drawImage(back, 0, 0);
     g.font = "14px Noto Sans CJK JP";
-    g.fillText(getRoundedValue(Rsc), 85,21);
-    g.fillText("L="+toStringL(Lmin,true), 362,48);
-    g.fillText(toStringC(Co,true), 485,327);
-    g.fillText(toStringC(Ct,true), 259,267);
-    g.fillText(Vin, 8,65);
-    g.fillText(Vout, 490,178);
+    g.fillText(getRoundedValue(Rsc)+"Ω", 85,21);
+    g.fillText("L="+toStringL(Lmin,true)+"H", 362,48);
+    g.fillText(toStringC(Co,true)+"F", 485,327);
+    g.fillText(toStringC(Ct,true)+"F", 259,267);
+    g.fillText(Vin+"V", 8,65);
+    g.fillText(Vout+"V", 490,178);
     // g.fillText("Vf="+Vf, 433,80);
-    g.fillText(getSimplifiedValue(R2), 425,228);
-    g.fillText(getSimplifiedValue(R1), 420,275);
+    g.fillText(getSimplifiedValue(R2)+"Ω", 425,228);
+    g.fillText(getSimplifiedValue(R1)+"Ω", 420,275);
   }, false);
   back.src = "images/Inv.png";
 }
