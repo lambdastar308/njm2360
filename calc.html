@@ -18,7 +18,10 @@
         var v = document.getElementById('RTemp').value;
         ResistorTable[v]();
         calc();
+        findResistors();
       };
+
+      document.getElementById('calcResis').onclick = findResistors;
 
       //スマホ判定をする
       var style = document.createElement("link");
@@ -81,7 +84,8 @@
         <option value="E48">E48系列</option>
         <option value="MarutsuResistors">マルツにて販売している抵抗から</option>
       </select>
-      <button id="loadResistors">指定した系列の抵抗を取得する</button><br/>
+      <button id="loadResistors">指定した系列の抵抗を取得する</button>
+      <button id="calcResis">抵抗を計算する</button><br/>
       ※「マルツにて販売している抵抗から」は2021/12/26 22:30に確認
     </div>
     <div id="result">
@@ -98,6 +102,8 @@
       I<sub>PK</sub>=<div                 id="Ipk"    class="inl"></div>[A]<br/>
       R<sub>1</sub>=<div                  id="R1"     class="inl"></div>[Ω]<br/>
       R<sub>2</sub>=<div                  id="R2"     class="inl"></div>[Ω]<br/>
+      R<sub>1</sub>,R<sub>2</sub>から逆算した
+      Vout=<div                  id="VoutRes"     class="inl"></div>[V]<br/>
       <br/>
     </div>
     <div id="result-circuit">

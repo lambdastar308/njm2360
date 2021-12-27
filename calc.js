@@ -22,6 +22,7 @@ var resistors;
 var R2perR1 // R2 / R1
 var R1;
 var R2;
+var Voutres;
 
 var resistorsResult;
 
@@ -34,12 +35,6 @@ function calc() {
   Vsat    = document.getElementById("Vsat")   .value;
   Vf      = document.getElementById("Vf")     .value;
   isUseICSW = document.getElementById("isUseExSW").checked;
-  var rawResistors = document.getElementById("Rlist").value.split("\n");
-
-  resistors = new Array();
-  for(var i = 0; i < rawResistors.length; i++){
-    resistors.push(parseFloat(rawResistors[i]));
-  }
 
   document.getElementById("Vsat").disabled = Vout < 0 || isUseICSW;
   document.getElementById("isUseExSW").disabled = Vout < 0;
@@ -54,7 +49,7 @@ function calc() {
   else
     calcStepDown();
 
-  findResistors();
+  // findResistors();
 
   showResult();
 
@@ -157,6 +152,7 @@ function showResult() {
   document.getElementById("Ipk").   innerHTML = getSimplifiedValue(Ipk);
   document.getElementById("R1").    innerHTML = getSimplifiedValue(R1);
   document.getElementById("R2").    innerHTML = getSimplifiedValue(R2);
+  document.getElementById("VoutRes").innerHTML = getSimplifiedValue(VoutRes);
 }
 
 function getSimplifiedValue(value){
@@ -239,6 +235,13 @@ function sortResult(a, b){
 function findResistors(){
   resistorsResult = new Array();
 
+  var rawResistors = document.getElementById("Rlist").value.split("\n");
+
+  resistors = new Array();
+  for(var i = 0; i < rawResistors.length; i++){
+    resistors.push(parseFloat(rawResistors[i]));
+  }
+
   for(var x = 0; x < resistors.length; x++)
     for(var y = 0; y < resistors.length; y++){
       var result = new Object();
@@ -252,4 +255,10 @@ function findResistors(){
     resistorsResult = resistorsResult.sort(sortResult);
     R1 = resistorsResult[0].R1;
     R2 = resistorsResult[0].R2;
+    if(Type == "負電圧"){
+      VoutRes = -1.25 * (1 + R2 / R1);
+    }else{
+      VoutRes = 1.25 * (1 + R2 / R1);
+    }
+    showResult();
 }
