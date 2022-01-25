@@ -27,13 +27,13 @@ var Voutres;
 var resistorsResult;
 
 function calc() {
-  Vin     = document.getElementById("Vin")    .value;
-  Vout    = document.getElementById("Vout")   .value;
-  Iout    = document.getElementById("Iout")   .value;
-  Vripple = document.getElementById("Vripple").value;
-  f       = document.getElementById("f")      .value;
-  Vsat    = document.getElementById("Vsat")   .value;
-  Vf      = document.getElementById("Vf")     .value;
+  Vin     = parseFloat(document.getElementById("Vin")    .value);
+  Vout    = parseFloat(document.getElementById("Vout")   .value);
+  Iout    = parseFloat(document.getElementById("Iout")   .value);
+  Vripple = parseFloat(document.getElementById("Vripple").value);
+  f       = parseFloat(document.getElementById("f")      .value);
+  Vsat    = parseFloat(document.getElementById("Vsat")   .value);
+  Vf      = parseFloat(document.getElementById("Vf")     .value);
   isUseICSW = document.getElementById("isUseExSW").checked;
 
   document.getElementById("Vsat").disabled = Vout < 0 || isUseICSW;
@@ -46,9 +46,9 @@ function calc() {
     calcInvert();
   else if(Vin < Vout)
     calcStepUp();
-  else
+  else if(Vout < Vin)
     calcStepDown();
-
+  else return;
   // findResistors();
 
   showResult();
