@@ -156,6 +156,7 @@ function showResult() {
 }
 
 function getSimplifiedValue(value){
+  if(value < 0) return "-" + getSimplifiedValue(-value);
   var pref = getSIPrefix(value);
   var nearestpref = [3,0,-3,-6,-12].reduce(function(prev, curr) {
     return (Math.abs(curr - pref) < Math.abs(prev - pref) ? curr : prev);
@@ -256,7 +257,7 @@ function findResistors(){
     R1 = resistorsResult[0].R1;
     R2 = resistorsResult[0].R2;
     if(Type == "負電圧"){
-      VoutRes = -1.25 * (1 + R2 / R1);
+      VoutRes = -1.25 * (1 + R1 / R2);
     }else{
       VoutRes = 1.25 * (1 + R2 / R1);
     }
